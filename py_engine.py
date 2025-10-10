@@ -3,6 +3,63 @@ import chess_openings
 import random
 import time
 
+
+"""
+ADD BETTER OUTPUTS FOR DEBUGGING
+ -format data for easy analysis as I tweak the engine
+ -cool if it generated a graphical tree of the moves it looked at
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        Using matplotlib for a more custom tree
+
+        If you want something dynamic and interactive:
+
+        import networkx as nx
+        import matplotlib.pyplot as plt
+
+        G = nx.DiGraph()
+
+        def add_edges(G, node):
+            for child in node.children:
+                G.add_edge(node.move or "root", child.move)
+                add_edges(G, child)
+
+        add_edges(G, root)
+        nx.draw(G, with_labels=True, node_size=2000, node_color="lightblue")
+        plt.show()
+
+
+        This gives you a quick, visual way to see the tree.
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"""
+
+"""
+how do humans imminently decide what lines to calculate first?
+
+checks, captures, then attacks
+evaluate checks first, then captures, then attacks. 
+
+=========================================
+
+figure out how long, on average, python takes for an iterations and how long a basic operation takes
+based on that, figure out how many iterations can be done in a given time frame
+
+=========================================
+
+using the ordering and allowed time, figure out how deep the bot can go in a given time frame.
+if the bot runs out of time before it finishes searching the current depth, it should return the current best move
+and hopfully the current best move is good based on the ordering.
+
+note: ordering might become complex for best results
+      for example, go one (maybe two) moves deep on a check or capture to see if it leads to a better position
+      these moves should be prioritized over other moves, the ordering algorithm will turn into a mix of 
+      depth and breadth first search for best results. this is because humans do not look at all possible moves.
+      humans do an extreamly shallow search of most moves, then a deep search of the best moves.
+      It's critical that the algorithm can quickly identify the best moves quickly.
+
+      If the bot is running out of time, it should dynamically prune more aggressively.
+"""
+
 class Bot:
     """A chess bot that uses a minimax algorithm with alpha-beta pruning to find the best move."""
     MAX_CACHE_SIZE = 1_500_000

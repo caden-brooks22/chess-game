@@ -216,13 +216,13 @@ class GUI():
             widget.bind('<Enter>', lambda event, widget=widget, color=GUI.theme.button_highlight_color: GUIController.on_hover(event, widget, color))
             widget.bind('<Leave>', lambda event, widget=widget, color=GUI.theme.button_color: GUIController.on_leave(event, widget, color))
 
-        move_history_frame = tk.Frame(frame, bg='red')
+        move_history_frame = tk.Frame(frame)
         move_history_frame.pack(pady=(10,0))
 
-        move_history_text_frame = tk.Frame(move_history_frame, bg='green')
+        move_history_text_frame = tk.Frame(move_history_frame)
         move_history_text_frame.grid(row=0, column=0, sticky="nsew")
         # Create a Text widget
-        text_widget = tk.Text(move_history_text_frame,width=int(12), height=20, font=("Helvetica", 12), wrap="word", state=tk.DISABLED, bg='blue')
+        text_widget = tk.Text(move_history_text_frame,width=int(12), height=20, font=("Helvetica", 12), wrap="word", state=tk.DISABLED)
         text_widget.pack(side='left', fill="both", expand=True)
 
         # Create a Scrollbar widget and attach it to the Text widget
@@ -231,16 +231,16 @@ class GUI():
         text_widget.config(yscrollcommand=scrollbar.set)
 
         # create a forward and back button for move history
-        move_history_button_frame = tk.Frame(move_history_frame, bg='blue')
+        move_history_button_frame = tk.Frame(move_history_frame)
         move_history_button_frame.grid(row=1, column=0, sticky="nsew")
 
         #used to make buttons with text resize according to pixels not text
         pixel = tk.PhotoImage(width=1, height=1)
 
-        move_back_history = tk.Button(move_history_button_frame, text='Back', width=1, height=12, border=1, relief=tk.SOLID, font=('Helvatical bold', 10), bg='yellow', fg='black', image=pixel, compound="c")#, command=lambda: game_state.show_previous_move())
+        move_back_history = tk.Button(move_history_button_frame, text='Back', width=1, height=12, border=1, relief=tk.SOLID, font=('Helvatical bold', 10), fg='black', image=pixel, compound="c")#, command=lambda: game_state.show_previous_move())
         move_back_history.pack(side='left', padx=0, pady=0, fill="both", expand=True)
 
-        move_forward_history = tk.Button(move_history_button_frame, text='Forward', width=1, height=12, border=1, relief=tk.SOLID, font=('Helvatical bold', 10), bg='yellow', fg='black', image=pixel, compound="c")#, command=lambda: game_state.show_next_move())
+        move_forward_history = tk.Button(move_history_button_frame, text='Forward', width=1, height=12, border=1, relief=tk.SOLID, font=('Helvatical bold', 10), fg='black', image=pixel, compound="c")#, command=lambda: game_state.show_next_move())
         move_forward_history.pack(side='right', padx=0, pady=0, fill="both", expand=True)
  
         # Configure row and column weights to make both frames take equal space
