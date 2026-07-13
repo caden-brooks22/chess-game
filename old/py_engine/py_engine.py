@@ -1,5 +1,5 @@
 import chess
-import chess_openings
+import old.py_engine.chess_openings as chess_openings
 import random
 import time
 

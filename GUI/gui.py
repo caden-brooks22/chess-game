@@ -1,13 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
 from random import randint
-from gui_settings import *
-from game import GameState, openings
+from pathlib import Path
+from GUI.gui_settings import *
+from GUI.game import GameState, openings
 from PIL import Image, ImageTk
 import threading
 from time import sleep
-import data_base
+import back_end.data_base as data_base
 # import json
+
+GUI_DIR = Path(__file__).resolve().parent
 
 # TODO fix resizing img bug when making the window full screen.
 #      it's easier to notice the bug when laptop is unplugged
@@ -136,7 +139,7 @@ class GUI():
 
     def create_profile_content(parent_frame):
         # Load the image
-        bg_img = Image.open("./img/simple-pawn.png")
+        bg_img = Image.open(GUI_DIR / "img" / "simple-pawn.png")
         bg_img = bg_img.resize((parent_frame.winfo_screenwidth(), parent_frame.winfo_screenheight()), Image.Resampling.LANCZOS)
         GUI.profile_bg_photo = ImageTk.PhotoImage(bg_img)
 
@@ -328,7 +331,7 @@ class GUI():
 
     def create_login_page(root):
         # Load the image
-        bg_img = Image.open("./img/simple-pieces.png")
+        bg_img = Image.open(GUI_DIR / "img" / "simple-pieces.png")
         bg_img = bg_img.resize((root.winfo_screenwidth(), root.winfo_screenheight()), Image.Resampling.LANCZOS)
         GUI.login_bg_photo = ImageTk.PhotoImage(bg_img)
 

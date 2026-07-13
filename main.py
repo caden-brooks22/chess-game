@@ -1,5 +1,4 @@
-from gui import GUI
-
+from GUI.gui import GUI
 
 def main():
     GUI.start()

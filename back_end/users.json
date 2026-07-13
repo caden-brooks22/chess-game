@@ -8,7 +8,7 @@
         "theme": "default",
         "auto_queen": true,
         "auto_flip": true,
-        "show_legal_moves": true
+        "show_legal_moves": false
       }
     },
     "alice": {

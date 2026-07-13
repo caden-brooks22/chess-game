@@ -1,4 +1,8 @@
+from pathlib import Path
+
 from PIL import Image, ImageTk, ImageDraw
+
+IMG_DIR = Path(__file__).resolve().parent / "img"
 
 class Piece():
     Pieces = {"P" : ("pawn", "white"),
@@ -20,7 +24,7 @@ class Piece():
         self.name = f"{self.color}-{Piece.Pieces[letter][0]}"
         self.letter = letter
         
-        self.open_image= Image.open(f"img\\{self.name}.png")
+        self.open_image = Image.open(IMG_DIR / f"{self.name}.png")
         try:
             self.image= ImageTk.PhotoImage(self.open_image)
         except:

@@ -1,7 +1,7 @@
 import chess
-import py_engine
-from gui_settings import gameSettings
-from image_manager import Piece, DisplayBoard
+import old.py_engine.py_engine as py_engine
+from GUI.gui_settings import gameSettings
+from GUI.image_manager import Piece, DisplayBoard
 
 # TODO turn openings into a class with a funciton that takes the position as
 #      a peramiter and deturmins if it's in libray of openings

@@ -1,9 +1,11 @@
 import json
+from pathlib import Path
 
-USERS_FILE = "users.json"
+BACK_END_DIR = Path(__file__).resolve().parent
+USERS_FILE = BACK_END_DIR / "users.json"
 
 def find_user(username):
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data["users"].get(username)
 
@@ -15,7 +17,7 @@ def login(username, password):
         
 
 def add_user(username, password_hash, nationality="unknown", settings=None):
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
     if username in data["users"]:
         return 1  # User already exists
@@ -32,34 +34,34 @@ def add_user(username, password_hash, nationality="unknown", settings=None):
         "nationality": nationality,
         "settings": settings
     }
-    with open(USERS_FILE, "w") as f:
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
     return data["users"][username]
 
 def edit_settings(username, settings):
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
     if data["users"][username] != "Guest":
         data["users"][username]["settings"] = settings
-        with open(USERS_FILE, "w") as f:
+        with open(USERS_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         print("edited settings!")
 
 def edit_password(username, password):
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
     if data["users"][username] != "Guest":
         data["users"][username]["settings"] = password
-        with open(USERS_FILE, "w") as f:
+        with open(USERS_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         print("edited password!")
 
 def edit_username(username, new_username):
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
     if data["users"][username] != "Guest":
         data["users"][username]["settings"] = new_username
-        with open(USERS_FILE, "w") as f:
+        with open(USERS_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         print("edited username!")
 
