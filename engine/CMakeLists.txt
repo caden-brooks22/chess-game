@@ -5,12 +5,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(engine SHARED
-	engine.cpp
-	c_chess/chess.cpp
-	c_chess/rules.cpp
+	src/engine.cpp
+	src/board/board.cpp
 )
 
-target_include_directories(engine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(engine PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 # Output DLL as engine.dll
 set_target_properties(engine PROPERTIES OUTPUT_NAME "engine")

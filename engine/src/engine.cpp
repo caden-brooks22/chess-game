@@ -1,9 +1,8 @@
-#include <cstdio>
-#include <iostream>
-#include <string>
 #include "engine.h"
-#include "c_chess/chess.h"
-#include "c_chess/rules.h"
+
+#include <cstdio>
+#include <cstring>
+#include <string>
 
 /* 
  * This function finds the best move for a given:
@@ -32,7 +31,7 @@ const char* find_best_move(const char* input, bool side_to_move, unsigned int ti
     
 
     std::string example_move = "d2d4"; // Placeholder for the best move logic
-    memcpy(buffer, example_move.c_str(), example_move.size() + 1); // Copy the best move to the buffer
+    std::memcpy(buffer, example_move.c_str(), example_move.size() + 1); // Copy the best move to the buffer
     return buffer; // Return the best move as a C-style string 
 }
 

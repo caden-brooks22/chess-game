@@ -17,7 +17,7 @@ cmake --build build --config Release
 If you need to recreate the build directory, use:
 
 ```powershell
-cmake -S C_engine -B build
+cmake -S engine -B build
 cmake --build build --config Release
 ```
 
