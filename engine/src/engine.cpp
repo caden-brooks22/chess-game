@@ -4,6 +4,10 @@
 #include <cstring>
 #include <string>
 
+#include "search/search.h"
+#include "evaluate/evaluate.h"
+
+
 /* 
  * This function finds the best move for a given:
  *  - chess position represented in FEN format, 
@@ -21,17 +25,19 @@ const char* find_best_move(const char* input, bool side_to_move, unsigned int ti
     printf("Time limit: %u ms\n", time_limit_ms); // Debug print to verify time limit
     printf("Side to move: %s\n", side_to_move ? "true" : "false"); // Debug print to verify side to move
 
-    // consider time allowed here, implement later
-    
-
-    // call the searching algorithm here. Use basic alpha-beta pruning or minimax for now.
+    // consider time allowed
+    // call the searching algorithm. Use basic alpha-beta pruning or minimax for now.
     // the searching algorithm will call a evaluation function
     // the searching algorithm will optionally use hardware acceleration (GPU or multi-core CPU) to search in parallel
-
+    const char* best_move;
+    try {
+        best_move = alpha_beta_search(input, side_to_move, time_limit_ms, evaluate_position);
+    } catch (const std::exception& e) {
+        printf("Engine exception: %s\n", e.what());
+        return nullptr; // Return null on error
+    }
     
-
-    std::string example_move = "d2d4"; // Placeholder for the best move logic
-    std::memcpy(buffer, example_move.c_str(), example_move.size() + 1); // Copy the best move to the buffer
+    std::memcpy(buffer, best_move, std::strlen(best_move) + 1); // Copy the best move to the buffer
     return buffer; // Return the best move as a C-style string 
 }
 

@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(engine SHARED
 	src/engine.cpp
 	src/board/board.cpp
+	src/search/search.cpp
+	src/evaluate/evaluate.cpp
 )
 
 target_include_directories(engine PRIVATE

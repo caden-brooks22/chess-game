@@ -1,6 +1,8 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#define INFINIT_TIME_LIMIT    0
+
 #ifdef __cplusplus
 extern "C" {
 #endif
